@@ -1,6 +1,6 @@
 module Contractinator
-  module CoreExtensions
-    module TestDouble
+  module RSpecExtensions
+    module Double
       def contract_inspect
         @name.to_s
       end
