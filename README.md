@@ -98,7 +98,7 @@ Sometimes I think of things that need a contract that I have no matchers for, an
 ```
  # this is a contract that might be created
  # by a link in a view spec for example
- Contractinator::Contract.require("get / routes")
+ contract("get / routes")
 
 ```
 
