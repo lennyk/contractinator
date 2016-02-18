@@ -9,7 +9,7 @@ module Contractinator
     end
 
     def contract(string)
-      Contractinator::Contractinator.require(string)
+      Contractinator::Contract.require(string)
     end
 
     def inject_contract(controller, name, dbl)
