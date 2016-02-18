@@ -1,5 +1,5 @@
 require "contractinator/version"
+require "contractinator/contract"
 
 module Contractinator
-  # Your code goes here...
 end
