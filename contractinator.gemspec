@@ -6,7 +6,7 @@ require 'contractinator/version'
 Gem::Specification.new do |spec|
   spec.name          = "contractinator"
   spec.version       = Contractinator::VERSION
-  spec.authors       = ["pivotal"]
+  spec.authors       = ["Ehren Murdick", "Tommy Orr", "Nick Mahoney", "Lenny Koepsell"]
   spec.email         = ["pair@pivotal.io"]
 
   spec.summary       = %q{Contractinator is a tool for contract-driven development!}
