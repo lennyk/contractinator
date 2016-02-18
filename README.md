@@ -18,7 +18,7 @@ Or install it yourself as:
     
 Then inform RSpec that you'd like to use contractinator by adding something like the following to your spec_helper.rb
 
-```
+```ruby
 require 'contractinator'
 
 RSpec.configure do |config|
@@ -47,7 +47,7 @@ There are several ways to document a provider's behavior. The easiest is to use 
 
 In the spec for a consumer, for example a rails controller, you might have
 
-```
+```ruby
 it 'assigns a new entry' do
   stipulate(Entry).must receive(:new).and_return(entry)
   get :new
@@ -58,14 +58,14 @@ end
 
 This sets the expectation that Entry.new will be called, and stubs it out to return `entry`. Now you should get a warning in your rspec output that looks like this:
 
-```
+```ruby
 unfulfilled contract 'Entry.new -> entry'
    at spec/controllers/entries_controller_spec.rb:45:in `block (3 levels) in <top (required)>'
 ```
 
 The next step is to make sure that contract is fulfilled by something. So we'll switch over to the model spec
 
-```
+```ruby
 describe '.new' do
   it { agree(Entry, :new).will be_a(Entry) }
 end
@@ -76,14 +76,14 @@ This calls new on Entry and asserts that it is_a Entry, and fulfills a contract 
 ### Less straight-forward contracts
 Not every contract in an application is so easy to specify. For example, a view spec which assigns a local variable has an agreement with a controller to assign that variable. Some other matchers available:
 
-```
+```ruby
 assign_contract('entries#new', :entry, entry)
 flash_contract('entries#create', :notice, 'Great Success!') if flash_enabled
 ```
 
 In these two cases, the method both does the side effect (assigning a variable for a view spec or setting a flash message), and also creates a matching contract. There isn't a corresponding fulfillment matcher for anything else yet, so you have to fulfill them manually. I do this like so, in my controller spec:
 
-```
+```ruby
 describe 'get :new' do
   it { fulfills 'entries#new assign @entry'   }
   it do 
@@ -95,7 +95,7 @@ end
 ### Free-form contracts
 Sometimes I think of things that need a contract that I have no matchers for, and all I really want is a smart comment. I'm using this for a routing contract relationship now. In that case, you can do this:
 
-```
+```ruby
  # this is a contract that might be created
  # by a link in a view spec for example
  contract("get / routes")
@@ -104,7 +104,7 @@ Sometimes I think of things that need a contract that I have no matchers for, an
 
 And fulfill it with
 
-```
+```ruby
 it { fulfills('get / routes') }
 ```
 
