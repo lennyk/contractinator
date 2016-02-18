@@ -8,6 +8,10 @@ module Contractinator
       ContractAdapter.new(dbl, self)
     end
 
+    def contract(string)
+      Contractinator::Contractinator.require(string)
+    end
+
     def inject_contract(controller, name, dbl)
       dbl_name = fmt_dbl(dbl).to_s.classify
       Contractinator::Contract.require(
