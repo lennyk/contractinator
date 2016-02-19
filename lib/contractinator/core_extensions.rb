@@ -4,6 +4,7 @@ require_relative 'core_extensions/hash'
 require_relative 'core_extensions/object'
 require_relative 'core_extensions/symbol'
 require_relative 'core_extensions/string'
+require_relative 'core_extensions/nil_class'
 
 module Contractinator
   ::Object.include(CoreExtensions::Object)
@@ -13,4 +14,5 @@ module Contractinator
   ::Hash.include(CoreExtensions::Hash)
   ::String.include(CoreExtensions::String)
   ::Symbol.include(CoreExtensions::Symbol)
+  ::NilClass.include(CoreExtensions::NilClass)
 end

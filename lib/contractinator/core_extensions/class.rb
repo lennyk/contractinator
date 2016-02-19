@@ -10,7 +10,9 @@ module Contractinator
       end
 
       def instance_contract_inspect
-        to_s.underscore
+        class_contract_inspect.gsub(/([a-z])([A-Z])/) do |p, n|
+          "#{p}_#{n.downcase}"
+        end.downcase
       end
     end
   end

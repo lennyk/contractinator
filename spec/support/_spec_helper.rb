@@ -4,6 +4,7 @@ RSpec.configure do |config|
   config.include Contractinator::ContractHelpers
 
   config.after(:suite) do
+    puts
     puts Contractinator::Contract.messages
     puts
     puts "#{Contractinator::Contract.fulfilled_set.count} fulfilled"

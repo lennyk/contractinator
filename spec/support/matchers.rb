@@ -1,14 +1,14 @@
 RSpec::Matchers.define :have do |number|
-  chain(:fulfilled_contracts) do
-    match do |output|
-      output.include? "#{number} fulfilled,"
-    end
+  match do |output|
+    output.include? "#{number} #{@type}"
   end
 
   chain(:unfulfilled_contracts) do
-    match do |output|
-      output.include? "#{number} unfulfilled,"
-    end
+    @type = 'unfulfilled'
+  end
+
+  chain(:fulfilled_contracts) do
+    @type = 'fulfilled'
   end
 end
 

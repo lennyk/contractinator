@@ -117,8 +117,12 @@ module Contractinator
       def must(matcher)
         @matcher = matcher
 
-        if matcher.is_a?(RSpec::Rails::Matchers::RoutingMatchers::RouteToMatcher)
-          contract_route_to_matcher
+        if defined?(RSpec::Rails::Matchers::RoutingMatchers::RouteToMatcher)
+          if matcher.is_a?(RSpec::Rails::Matchers::RoutingMatchers::RouteToMatcher)
+            contract_route_to_matcher
+          else
+            contract_receive_matcher
+          end
         else
           contract_receive_matcher
         end
